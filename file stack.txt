@@ -1,0 +1,38 @@
+my-chess-game/
+│
+├── frontend/
+│   ├── components/
+│   ├── pages/
+│   ├── public/
+│   ├── styles/
+│   ├── index.js
+│   └── package.json
+│
+├── backend/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── server.js
+│   └── package.json
+│
+├── game-logic/
+│   ├── src/
+│   ├── include/
+│   ├── main.cpp
+│   └── CMakeLists.txt
+│
+├── redis/
+│   └── redis.conf
+│
+├── docker-compose.yml
+│
+├── kubernetes/
+│   ├── deployment.yaml
+│   └── service.yaml
+│
+├── scripts/
+│   ├── deploy.sh
+│   └── setup.sh
+│
+└── README.md
