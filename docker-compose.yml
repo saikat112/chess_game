@@ -12,6 +12,8 @@ services:
       - "5000:5000"
     depends_on:
       - redis
+    environment:
+      - mongo_url = mongodb+srv://chess-game:3CNS2WKnki2cTDBn@cluster0.nfhftd6.mongodb.net/chess_game
   game-logic:
     build: ./game-logic
     depends_on:
