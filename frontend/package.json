@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^14.2.4",
     "@reduxjs/toolkit": "^2.2.5",
     "autoprefixer": "^10.4.19",
     "chess.js": "^1.0.0-beta.8",
@@ -21,6 +22,7 @@
     "socket.io-client": "^4.2.0"
   },
   "devDependencies": {
+    "@types/chess.js": "^0.13.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

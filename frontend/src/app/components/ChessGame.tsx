@@ -1,20 +1,16 @@
-// src/components/ChessGame.tsx
-
 'use client';
 
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { Chess } from 'chess.js';
+import Chessboard from 'chessboardjsx';
+import { Chess, Move } from 'chess.js';
 
-// Dynamically import Chessboardjsx to ensure it's only loaded on the client-side
-const Chessboard = dynamic(() => import('chessboardjsx'), { ssr: false });
-
-const ChessGame: React.FC = () => {
+const ChessGame = () => {
   const [game] = useState(new Chess());
   const [fen, setFen] = useState('start'); // FEN represents the board position
+  const [moveHistory, setMoveHistory] = useState<string[]>([]);
 
-  const handleMove = (move: any) => {
-    const newMove = game.move({
+  const handleMove = (move: { sourceSquare: string; targetSquare: string }) => {
+    const newMove: Move | null = game.move({
       from: move.sourceSquare,
       to: move.targetSquare,
       promotion: 'q', // Always promote to a queen for simplicity
@@ -22,15 +18,36 @@ const ChessGame: React.FC = () => {
 
     if (newMove === null) return; // Illegal move
     setFen(game.fen());
+    setMoveHistory([...moveHistory, game.history({ verbose: true }).pop()!.san]);
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Chessboard
-        width={600}
-        position={fen}
-        onDrop={handleMove}
-      />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <h1 className="text-4xl mb-4">Chess Game</h1>
+      <div className="bg-white shadow-lg rounded-lg p-4 flex">
+        <div className="flex flex-col items-center">
+          <div className="flex justify-between w-full mb-4">
+            <div className="text-xl">Player 1</div>
+            <div className="text-xl">Timer</div>
+            <div className="text-xl">Player 2</div>
+          </div>
+          <Chessboard
+            width={600}
+            position={fen}
+            onDrop={({ sourceSquare, targetSquare }) =>
+              handleMove({ sourceSquare, targetSquare })
+            }
+          />
+        </div>
+        <div className="ml-4">
+          <h2 className="text-2xl mb-2">Move History</h2>
+          <div className="h-64 overflow-y-scroll border p-2">
+            {moveHistory.map((move, index) => (
+              <div key={index}>{index + 1}. {move}</div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
