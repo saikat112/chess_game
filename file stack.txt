@@ -1,11 +1,31 @@
 my-chess-game/
 │
 ├── frontend/
-│   ├── components/
-│   ├── pages/
-│   ├── public/
-│   ├── styles/
-│   ├── index.js
+│   ├── .next
+│   ├── node_modules
+│   ├── src/
+|   │   ├── app/
+|   │   │   ├── components/
+|   |   |   │   ├── ChessGame.tsx
+|   |   |   |   ├── ClientOnly.tsx
+|   |   │   ├── pages
+|   |   |   ├── favicon
+|   |   |   ├── favicon.ico
+|   |   |   ├── global.css
+|   |   |   ├── layout.tsx
+|   |   |   ├── page.tsx
+│   │   ├── types/
+|   │   ├── chess.d.ts
+│   ├── public
+|   ├── next-env.d.ts
+|   ├── next.config.mjs
+|   ├── postcss.config.mjs
+|   ├── tailwind.config.ts
+|   ├── tsconfig.json
+|   ├── Dockerfile
+|   ├── .eslintrc.json
+|   ├── .gitignore
+│   ├── store.json
 │   └── package.json
 │
 ├── backend/
