@@ -30,19 +30,19 @@ const LandingPage = () => {
         <div className="flex flex-col items-center justify-center space-y-4 p-4">
           <button
             onClick={handlePlayOnlineClick}
-            className="bg-green-600 text-white py-2 px-4 rounded-lg text-xl hover:bg-green-700"
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg text-xl hover:bg-blue-700"
           >
             Play Online
           </button>
           <button
             onClick={handlePlayWithFriendClick}
-            className="bg-green-600 text-white py-2 px-4 rounded-lg text-xl hover:bg-green-700"
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg text-xl hover:bg-blue-700"
           >
             Play with Friend
           </button>
           <button
             onClick={handlePlayWithComputerClick}
-            className="bg-green-600 text-white py-2 px-4 rounded-lg text-xl hover:bg-green-700"
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg text-xl hover:bg-blue-700"
           >
             Play with Computer
           </button>
@@ -50,9 +50,6 @@ const LandingPage = () => {
       </div>
       <div className="md:hidden">
         <MobileNavBar />
-        <div className="flex items-center justify-center mt-16 mb-16">
-          <img src="/chess-picture-mobile.jpg" alt="Chess" className="w-3/4 rounded-lg shadow-lg" />
-        </div>
       </div>
     </div>
   );
