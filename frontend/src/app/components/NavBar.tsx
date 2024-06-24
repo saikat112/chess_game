@@ -36,7 +36,7 @@ const NavBar = () => {
   const playList = () => (
     <Collapse in={playOpen} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        <Tooltip title="Play Online" placement="right"followCursor arrow>
+        <Tooltip title="Play Online" placement="right" followCursor arrow disableHoverListener={expanded}>
           <ListItemButton sx={{ pl: 4 }} onClick={() => handleNavClick('/play-online')}>
             <ListItemIcon>
               <PublicIcon />
@@ -44,7 +44,7 @@ const NavBar = () => {
             {expanded && <ListItemText primary="Play Online" />}
           </ListItemButton>
         </Tooltip>
-        <Tooltip title="Play with Friend" placement="right" followCursor arrow>
+        <Tooltip title="Play with Friend" placement="right" followCursor arrow disableHoverListener={expanded}>
           <ListItemButton sx={{ pl: 4 }} onClick={() => handleNavClick('/play-with-friend')}>
             <ListItemIcon>
               <PeopleIcon />
@@ -52,7 +52,7 @@ const NavBar = () => {
             {expanded && <ListItemText primary="Play with Friend" />}
           </ListItemButton>
         </Tooltip>
-        <Tooltip title="Play with Computer" placement="right" followCursor arrow>
+        <Tooltip title="Play with Computer" placement="right" followCursor arrow disableHoverListener={expanded}>
           <ListItemButton sx={{ pl: 4 }} onClick={() => handleNavClick('/play-with-computer')}>
             <ListItemIcon>
               <ComputerIcon />
@@ -65,7 +65,7 @@ const NavBar = () => {
   );
 
   const HowToPlay = () => (
-    <Tooltip title="How to Play" placement="right" followCursor arrow>
+    <Tooltip title="How to Play" placement="right" followCursor arrow disableHoverListener={expanded}>
       <ListItemButton onClick={() => handleNavClick('/how-to-play')}>
         <ListItemIcon>
           <InfoIcon />
@@ -77,7 +77,7 @@ const NavBar = () => {
 
   const list = () => (
     <List>
-      <Tooltip title="Play" placement="right" followCursor arrow>
+      <Tooltip title="Play" placement="right" followCursor arrow disableHoverListener={expanded}>
         <ListItemButton onClick={handlePlayClick}>
           <ListItemIcon>
             <PlayArrowIcon />
@@ -93,7 +93,7 @@ const NavBar = () => {
 
   const bottomList = () => (
     <List>
-      <Tooltip title="Log In" placement="right" followCursor arrow>
+      <Tooltip title="Log In" placement="right" followCursor arrow disableHoverListener={expanded}>
         <ListItemButton onClick={() => handleNavClick('/login')}>
           <ListItemIcon>
             <LoginIcon />
@@ -101,7 +101,7 @@ const NavBar = () => {
           {expanded && <ListItemText primary="Log In" />}
         </ListItemButton>
       </Tooltip>
-      <Tooltip title="Sign Up" placement="right" followCursor arrow>
+      <Tooltip title="Sign Up" placement="right" followCursor arrow disableHoverListener={expanded}>
         <ListItemButton onClick={() => handleNavClick('/sign-up')}>
           <ListItemIcon>
             <PersonAddIcon />
@@ -109,7 +109,7 @@ const NavBar = () => {
           {expanded && <ListItemText primary="Sign Up" />}
         </ListItemButton>
       </Tooltip>
-      <Tooltip title="Settings" placement="right" followCursor arrow>
+      <Tooltip title="Settings" placement="right" followCursor arrow disableHoverListener={expanded}>
         <ListItemButton onClick={() => handleNavClick('/settings')}>
           <ListItemIcon>
             <SettingsIcon />
@@ -117,7 +117,7 @@ const NavBar = () => {
           {expanded && <ListItemText primary="Settings" />}
         </ListItemButton>
       </Tooltip>
-      <Tooltip title="Log Out" placement="right" followCursor arrow>
+      <Tooltip title="Log Out" placement="right" followCursor arrow disableHoverListener={expanded}>
         <ListItemButton onClick={() => handleNavClick('/logout')}>
           <ListItemIcon>
             <LogoutIcon />
