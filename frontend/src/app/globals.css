@@ -37,6 +37,15 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.app-container {
+  display: flex;
+}
+
+.content-container {
+  flex-grow: 1;
+  padding: 20px;
+}
+
 
 .chessboard {
   display: grid;
