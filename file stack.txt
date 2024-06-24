@@ -8,7 +8,18 @@ my-chess-game/
 |   │   │   ├── components/
 |   |   |   │   ├── ChessGame.tsx
 |   |   |   |   ├── ClientOnly.tsx
-|   |   │   ├── pages
+|   |   |   |   ├── landingPage.tsx
+|   |   |   |   ├── MobileNavBar.tsx
+|   |   |   |   ├── NavBar.tsx
+|   |   │   ├── pages/
+|   │   │   │   ├── play-online.tsx
+|   │   │   │   ├── play-with-friend.tsx
+|   │   │   │   ├── play-with-computer.tsx
+|   │   │   │   ├── settings.tsx
+|   │   │   │   ├── how-to-play.tsx
+|   │   │   │   ├── login.tsx
+|   │   │   │   ├── sign-up.tsx
+|   │   │   │   ├── logout.tsx
 |   |   |   ├── favicon
 |   |   |   ├── favicon.ico
 |   |   |   ├── global.css
@@ -16,6 +27,7 @@ my-chess-game/
 |   |   |   ├── page.tsx
 │   │   ├── types/
 |   │   ├── chess.d.ts
+|   │   ├── react-color.d.ts
 │   ├── public
 |   ├── next-env.d.ts
 |   ├── next.config.mjs
