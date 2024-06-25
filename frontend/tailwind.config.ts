@@ -1,4 +1,3 @@
-// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,9 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {},
+      backgroundImage: {
+        'hero-pattern': "url('/images/hero-pattern.svg')",
+        'footer-texture': "url('/images/footer-texture.png')",
+      },
+      colors: {
+        primary: '#1D4ED8',
+        secondary: '#D97706',
+      },
     },
   },
   plugins: [],
 };
+
 export default config;

@@ -37,6 +37,51 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.relative {
+  position: relative;
+}
+
+.transition-transform {
+  transition: transform 0.5s ease-in-out;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.translate-x-0 {
+  transform: translateX(0);
+}
+
+.translate-x-full {
+  transform: translateX(100%);
+}
+
+.-translate-x-full {
+  transform: translateX(-100%);
+}
+
+.inline-block {
+  display: inline-block;
+}
 .app-container {
   display: flex;
 }
