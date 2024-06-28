@@ -9,7 +9,6 @@ const ProfileEdit: React.FC = () => {
 
   const handleProfileSave = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your profile saving logic here
     console.log('Profile saved:', { username, email, avatar });
   };
 

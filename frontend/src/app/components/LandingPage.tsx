@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import NavBar from './NavBar';
 import MobileNavBar from './MobileNavBar';
+import SideNavBar from './Sidebar';
 
 const LandingPage = () => {
   const router = useRouter();
@@ -23,7 +24,8 @@ const LandingPage = () => {
   return (
     <div>
       <div className="hidden md:flex">
-        <NavBar />
+        {/* <NavBar /> */}
+        {/* <Sidebar/> */}
         <div className="flex-1 flex items-center justify-center">
           <img src="/chess-picture.jpg" alt="Chess" className="w-1/2 rounded-lg shadow-lg" />
         </div>
