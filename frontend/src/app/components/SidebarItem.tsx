@@ -4,6 +4,7 @@ import * as React from 'react';
 import { useContext, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { SidebarContext } from './Sidebar';
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
 
 interface SidebarItemProps {
   icon: ReactNode;
@@ -49,6 +50,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ icon, text, path, subItems, a
         <span className={`overflow-hidden transition-all ${expanded ? 'w-52 ml-3' : 'w-0'}`}>
           {text}
         </span>
+        {subItems && (
+          <span className="ml-auto">
+            {open ? <ExpandLess /> : <ExpandMore />}
+          </span>
+        )}
         {alert && (
           <div
             className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
