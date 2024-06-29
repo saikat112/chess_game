@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect } from 'react';
-import LoginContainer from '../components/LoginContainer';
-import SignupContainer from '../components/SignupContainer';
+import LoginContainer from '../components/auth/LoginContainer';
+import SignupContainer from '../components/auth/SignupContainer';
 import '../../app/css/LoginSignUp.css';
 
 const SignupPage: React.FC = () => {

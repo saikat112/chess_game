@@ -12,11 +12,10 @@ const NavBar: React.FC = () => {
         icon={<PlayArrow />}
         text="Play"
         subItems={[
-          { icon: <Public />, text: 'Play Online', path: '/play-online' },
-          { icon: <People />, text: 'Play with Friend', path: '/play-with-friend' },
-          { icon: <Computer />, text: 'Play with Computer', path: '/play-with-computer' },
-        ]}
-      />
+          { icon: <Public />, text: 'Play Online', path: '/play/play-online' },
+          { icon: <People />, text: 'Play with Friend', path: '/play/play-with-friend' },
+          { icon: <Computer />, text: 'Play with Computer', path: '/play/play-with-computer' },
+        ]} />
       <SidebarItem icon={<Info />} text="How to Play" path="/how-to-play" />
       <SidebarItem icon={<Login />} text="Log In" path="/login" />
       <SidebarItem icon={<PersonAdd />} text="Sign Up" path="/sign-up" />
