@@ -1,9 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import { Avatar } from '@mui/material';
-import { MoreVertical, ChevronLast, ChevronFirst } from 'lucide-react';
-import { useContext, createContext, useState, ReactNode } from 'react';
+import { Avatar, Menu, MenuItem, ListItemIcon } from '@mui/material';
+import { MoreVertical, ChevronLast, ChevronFirst, Edit, LogOut } from 'lucide-react';
+import { useContext, createContext, useState, ReactNode, MouseEvent } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface SidebarContextProps {
   expanded: boolean;
@@ -17,6 +18,30 @@ const SidebarContext = createContext<SidebarContextProps | undefined>(undefined)
 
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const [expanded, setExpanded] = useState(true);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const router = useRouter();
+
+  const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    // Add logout functionality here
+    console.log('Logout clicked');
+    router.push('/logout'); // Navigate to logout path
+    handleMenuClose();
+  };
+
+  const handleProfileEdit = () => {
+    // Add profile edit functionality here
+    console.log('Edit Profile clicked');
+    router.push('/profile-edit'); // Navigate to profile edit path
+    handleMenuClose();
+  };
 
   return (
     <aside className="h-screen">
@@ -50,7 +75,33 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
               <h4 className="font-semibold">Saikat manna</h4>
               <span className="text-xs text-gray-600">Saikatmanna112@gmail.com</span>
             </div>
-            <MoreVertical size={20} className="cursor-pointer" />
+            <MoreVertical
+              size={20}
+              className="cursor-pointer"
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleMenuClick}
+            />
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <MenuItem onClick={handleProfileEdit}>
+                <ListItemIcon>
+                  <Edit size={20} />
+                </ListItemIcon>
+                Edit Profile
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                <ListItemIcon>
+                  <LogOut size={20} />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
+            </Menu>
           </div>
         </div>
       </nav>

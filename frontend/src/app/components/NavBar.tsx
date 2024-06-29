@@ -20,8 +20,8 @@ const NavBar: React.FC = () => {
       <SidebarItem icon={<Info />} text="How to Play" path="/how-to-play" />
       <SidebarItem icon={<Login />} text="Log In" path="/login" />
       <SidebarItem icon={<PersonAdd />} text="Sign Up" path="/sign-up" />
-      <SidebarItem icon={<Settings />} text="Settings" path="/settings" />
-      <SidebarItem icon={<Logout />} text="Log Out" path="/logout" />
+      {/* <SidebarItem icon={<Settings />} text="Settings" path="/settings" />
+      <SidebarItem icon={<Logout />} text="Log Out" path="/logout" /> */}
     </Sidebar>
   );
 };

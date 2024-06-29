@@ -27,6 +27,8 @@ my-chess-game/
 │   │   │   │   ├── page.tsx
 │   │   │   ├── logout/
 │   │   │   │   ├── page.tsx
+│   │   │   ├── css/
+│   │   │   │   ├── LoginSignUp.css
 |   |   |   ├── favicon
 |   |   |   ├── favicon.ico
 |   |   |   ├── global.css
