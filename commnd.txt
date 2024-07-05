@@ -1,0 +1,6 @@
+-----------------part of gmae logic in c++--------------------
+1. game-logic build:      mkdir build      cd build
+2. MinGW Makefiles: cmake -G "MinGW Makefiles" ..
+3. bulid project: mingw32-make
+4. run in c++ :  ./ChessGame.exe
+
