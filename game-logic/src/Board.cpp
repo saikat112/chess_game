@@ -45,7 +45,7 @@ void Board::initializeBackRow(Color color, int row) {
 
 bool Board::movePiece(int startX, int startY, int endX, int endY) {
     Piece* piece = squares[startX][startY];
-    if (piece && piece->isValidMove(startX, startY, endX, endY)) {
+    if (piece && piece->isValidMove(startX, startY, endX, endY, squares)) {
         delete squares[endX][endY]; // Capture the piece at the destination
         squares[endX][endY] = piece;
         squares[startX][startY] = nullptr;

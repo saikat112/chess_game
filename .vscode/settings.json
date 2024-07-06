@@ -1,3 +1,9 @@
 {
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        ".env*": "dotenv",
+        "*.rb": "ruby",
+        "cmath": "cpp"
+    }
 }
