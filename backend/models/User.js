@@ -28,6 +28,8 @@ const userSchema = new Schema({
   timestamps: true
 });
 
+userSchema.index({ username: 1 }, { unique: true });
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

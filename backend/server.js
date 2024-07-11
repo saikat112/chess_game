@@ -22,8 +22,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/games', gameRoutes);
 app.use('/graphql', graphqlRoutes);
 
-// MongoDB connection
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/chessgame';
+// Updated MongoDB connection URL
+const mongoUrl = process.env.MONGO_URL || 'mongodb+srv://chess-game:3CNS2WKnki2cTDBn@cluster0.mongodb.net/chess_game?retryWrites=true&w=majority';
 console.log(`Connecting to MongoDB at: ${mongoUrl}`);
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
