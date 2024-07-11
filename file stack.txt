@@ -1,16 +1,17 @@
 my-chess-game/
-│
 ├── frontend/
-│   ├── .next
-│   ├── node_modules
+│   ├── .next/
+│   ├── node_modules/
+│   ├── public/
+│   │   ├── favicon.ico
 │   ├── src/
-|   │   ├── app/
-|   │   │   ├── components/
-|   |   |   │   ├── ChessGame.tsx
-|   |   |   |   ├── ClientOnly.tsx
-|   |   |   |   ├── landingPage.tsx
-|   |   |   |   ├── MobileNavBar.tsx
-|   |   |   |   ├── NavBar.tsx
+│   │   ├── app/
+│   │   │   ├── components/
+│   │   │   │   ├── ChessGame.tsx
+│   │   │   │   ├── ClientOnly.tsx
+│   │   │   │   ├── landingPage.tsx
+│   │   │   │   ├── MobileNavBar.tsx
+│   │   │   │   ├── NavBar.tsx
 │   │   │   ├── play-online/
 │   │   │   │   ├── page.tsx
 │   │   │   ├── play-with-friend/
@@ -29,51 +30,64 @@ my-chess-game/
 │   │   │   │   ├── page.tsx
 │   │   │   ├── css/
 │   │   │   │   ├── LoginSignUp.css
-|   |   |   ├── favicon
-|   |   |   ├── favicon.ico
-|   |   |   ├── global.css
-|   |   |   ├── layout.tsx
-|   |   |   ├── page.tsx
+│   │   │   ├── favicon/
+│   │   │   ├── global.css
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx
 │   │   ├── types/
-|   │   ├── chess.d.ts
-|   │   ├── react-color.d.ts
-│   ├── public
-|   ├── next-env.d.ts
-|   ├── next.config.mjs
-|   ├── postcss.config.mjs
-|   ├── tailwind.config.ts
-|   ├── tsconfig.json
-|   ├── Dockerfile
-|   ├── .eslintrc.json
-|   ├── .gitignore
+│   │   │   ├── chess.d.ts
+│   │   │   ├── react-color.d.ts
+│   ├── next-env.d.ts
+│   ├── next.config.mjs
+│   ├── postcss.config.mjs
+│   ├── tailwind.config.ts
+│   ├── tsconfig.json
+│   ├── Dockerfile
+│   ├── .eslintrc.json
+│   ├── .gitignore
 │   ├── store.json
-│   └── package.json
+│   ├── package.json
 │
 ├── backend/
 │   ├── controllers/
+│   │   ├── userController.js
+│   │   ├── gameController.js
 │   ├── models/
+│   │   ├── User.js
+│   │   ├── Game.js
 │   ├── routes/
-│   ├── services/
+│   │   ├── userRoutes.js
+│   │   ├── gameRoutes.js
+│   │   ├── graphqlRoutes.js
+│   │   ├── grpcServer.js
+│   │   ├── soapServer.js
+│   ├── graphql/
+│   │   ├── schema.js
+│   │   ├── resolvers.js
+│   ├── grpc/
+│   │   ├── chess.proto
+│   ├── soap/
+│   │   ├── chess.wsdl
 │   ├── server.js
-│   └── package.json
+│   ├── package.json
+│   ├── .env
 │
 ├── game-logic/
 │   ├── src/
 │   ├── include/
 │   ├── main.cpp
-│   └── CMakeLists.txt
+│   ├── CMakeLists.txt
 │
 ├── redis/
-│   └── redis.conf
-│
-├── docker-compose.yml
+│   ├── redis.conf
 │
 ├── kubernetes/
 │   ├── deployment.yaml
-│   └── service.yaml
+│   ├── service.yaml
 │
 ├── scripts/
 │   ├── deploy.sh
-│   └── setup.sh
+│   ├── setup.sh
 │
-└── README.md
+├── docker-compose.yml
+├── README.md
