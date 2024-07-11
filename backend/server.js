@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const gameRoutes = require('./routes/gameRoutes');
-const graphqlRoutes = require('./routes/graphqlRoutes');
+const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require('./graphql/schema');
+const resolvers = require('./graphql/resolvers');
 const startSoapServer = require('./routes/soapServer');
 const startGrpcServer = require('./routes/grpcServer');
 require('dotenv').config();
@@ -20,7 +22,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/users', userRoutes);
 app.use('/api/games', gameRoutes);
-app.use('/graphql', graphqlRoutes);
 
 // MongoDB connection
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/chess_game';
@@ -30,10 +31,26 @@ mongoose.connect(mongoUrl, {
   useUnifiedTopology: true
 }).then(() => {
   console.log('Connected to MongoDB');
-  // mongoose.set('debug', true); // Enable Mongoose debug mode
+  mongoose.set('debug', true); // Enable Mongoose debug mode
 }).catch(err => {
   console.error('MongoDB connection error:', err);
 });
+
+// Function to start Apollo Server
+async function startApolloServer() {
+  const apolloServer = new ApolloServer({ typeDefs, resolvers });
+  await apolloServer.start();
+  apolloServer.applyMiddleware({ app });
+
+  // Start the HTTP server after Apollo Server is ready
+  const PORT = process.env.PORT || 5000;
+  server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Start Apollo Server
+startApolloServer();
 
 // Socket.io connection
 io.on('connection', (socket) => {
@@ -66,9 +83,4 @@ startSoapServer(app, server);
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
-});
-
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });
