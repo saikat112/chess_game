@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const gameRoutes = require('./routes/gameRoutes');
-const graphqlRoutes = require('./routes/graphqlRoutes');  // Correctly import the GraphQL routes
+const graphqlRoutes = require('./routes/graphqlRoutes');
 const startSoapServer = require('./routes/soapServer');
 const startGrpcServer = require('./routes/grpcServer');
 require('dotenv').config();
@@ -20,16 +20,17 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/users', userRoutes);
 app.use('/api/games', gameRoutes);
-app.use('/graphql', graphqlRoutes);  // Ensure the GraphQL routes are used
+app.use('/graphql', graphqlRoutes);
 
 // MongoDB connection
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/chessgame';
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/chess_game';
 console.log(`Connecting to MongoDB at: ${mongoUrl}`);
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
   console.log('Connected to MongoDB');
+  // mongoose.set('debug', true); // Enable Mongoose debug mode
 }).catch(err => {
   console.error('MongoDB connection error:', err);
 });
