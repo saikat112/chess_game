@@ -2,17 +2,18 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Move {
-    from: String!
-    to: String!
-    piece: String!
+    from: String
+    to: String
+    piece: String
+    timestamp: String
   }
 
   type Game {
-    id: ID!
-    players: [String!]!
-    moves: [Move!]!
-    status: String!
-    result: String!
+    id: ID
+    players: [String]
+    moves: [Move]
+    status: String
+    result: String
   }
 
   type Query {

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const gameRoutes = require('./routes/gameRoutes');
-const graphqlRoutes = require('./routes/graphqlRoutes');
+const graphqlRoutes = require('./routes/graphqlRoutes');  // Correctly import the GraphQL routes
 const startSoapServer = require('./routes/soapServer');
 const startGrpcServer = require('./routes/grpcServer');
 require('dotenv').config();
@@ -20,10 +20,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/api/users', userRoutes);
 app.use('/api/games', gameRoutes);
-app.use('/graphql', graphqlRoutes);
+app.use('/graphql', graphqlRoutes);  // Ensure the GraphQL routes are used
 
-// Updated MongoDB connection URL
-const mongoUrl = process.env.MONGO_URL || 'mongodb+srv://chess-game:3CNS2WKnki2cTDBn@cluster0.mongodb.net/chess_game?retryWrites=true&w=majority';
+// MongoDB connection
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/chessgame';
 console.log(`Connecting to MongoDB at: ${mongoUrl}`);
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
