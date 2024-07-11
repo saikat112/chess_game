@@ -1,4 +1,6 @@
 const Game = require('../models/Game');
+const Game = require('../models/Game');
+
 
 exports.createGame = async (req, res) => {
   try {
@@ -58,3 +60,11 @@ exports.getGameHistory = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+exports.deleteAllGames = async (req, res) => {
+  try {
+    await Game.deleteMany({});
+    res.status(200).json({ message: 'All games deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting games', error });
+  }
+}

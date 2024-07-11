@@ -25,7 +25,7 @@ const typeDefs = gql`
 
   type Mutation {
     createGame: Game!
-    joinGame(id: ID!, player: String!): Game!
+    joinGame(id: ID, player: String!): Game!
     makeMove(id: ID!, from: String!, to: String!, piece: String!): Game!
   }
 `;

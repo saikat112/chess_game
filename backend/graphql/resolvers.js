@@ -11,9 +11,21 @@ const resolvers = {
       return await newGame.save();
     },
     joinGame: async (_, { id, player }) => {
-      const game = await Game.findById(id);
+      let game = await Game.findById(id);
       if (!game) throw new Error('Game not found');
-      game.players.push(player);
+
+      if (game.players.length >= 2) {
+        // Game is full, find or create a new game
+        game = await Game.findOne({ status: 'ongoing', players: { $size: 1 } });
+        if (!game) {
+          // If no partially filled game is found, create a new game
+          game = new Game({ players: [player] });
+        } else {
+          game.players.push(player);
+        }
+      } else {
+        game.players.push(player);
+      }
       return await game.save();
     },
     makeMove: async (_, { id, from, to, piece }) => {
