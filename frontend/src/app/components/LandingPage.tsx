@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import NavBar from './NavBar';
 import MobileNavBar from './MobileNavBar';
 import SideNavBar from './Sidebar';
+import Image from 'next/image';
+
 
 const LandingPage = () => {
   const router = useRouter();
@@ -27,7 +29,7 @@ const LandingPage = () => {
         {/* <NavBar /> */}
         {/* <Sidebar/> */}
         <div className="flex-1 flex items-center justify-center">
-          <img src="/chess-picture.jpg" alt="Chess" className="w-1/2 rounded-lg shadow-lg" />
+          <Image src="/chess-picture.jpg" alt="Chess" className="w-1/2 rounded-lg shadow-lg" />
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 p-4">
           <button

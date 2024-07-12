@@ -10,7 +10,7 @@ const HowToPlay = () => {
       <h2>Basic Rules</h2>
       <ul>
         <li>Each player starts with 16 pieces: one king, one queen, two rooks, two knights, two bishops, and eight pawns.</li>
-        <li>The goal is to checkmate your opponent's king.</li>
+        <li>The goal is to checkmate your opponent&apos;s king.</li>
         <li>Pieces move in specific ways. For example, rooks move horizontally or vertically any number of squares, but cannot leap over other pieces.</li>
       </ul>
       <h2>Special Moves</h2>
@@ -21,7 +21,7 @@ const HowToPlay = () => {
       </ul>
       <h2>Winning the Game</h2>
       <ul>
-        <li>Checkmate your opponent's king.</li>
+        <li>Checkmate your opponent&apos;s king.</li>
         <li>Your opponent resigns.</li>
         <li>Opponent runs out of time in timed games.</li>
       </ul>

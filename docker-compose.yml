@@ -13,7 +13,7 @@ services:
     depends_on:
       - redis
     environment:
-      - mongo_url = mongodb+srv://chess-game:3CNS2WKnki2cTDBn@cluster0.nfhftd6.mongodb.net/chess_game
+      - mongo_url=mongodb+srv://chess_game:1pd6BCKFpLdQmFT4@cluster0.nfhftd6.mongodb.net/chess_game?retryWrites=true&w=majority
   game-logic:
     build: ./game-logic
     depends_on:
