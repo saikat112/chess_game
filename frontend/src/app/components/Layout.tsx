@@ -25,7 +25,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     router.push('/');
   };
 
-  const shouldHideSidebar = hideSidebarRoutes.includes(pathname);
+  // Using nullish coalescing operator to handle null pathname
+  const shouldHideSidebar = hideSidebarRoutes.includes(pathname ?? '');
 
   return (
     <div className="flex h-screen">
