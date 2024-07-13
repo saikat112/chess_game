@@ -21,8 +21,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const router = useRouter();
 
-  const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleMenuClick = (event: MouseEvent<SVGSVGElement>) => {
+    const target = event.currentTarget as EventTarget & SVGSVGElement;
+    if (target instanceof HTMLElement) {
+      setAnchorEl(target);
+    }
   };
 
   const handleMenuClose = () => {
@@ -75,7 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
               <h4 className="font-semibold">Saikat manna</h4>
               <span className="text-xs text-gray-600">Saikatmanna112@gmail.com</span>
             </div>
-            <MoreVertical size={20} className="cursor-pointer" aria-controls="simple-menu" aria-haspopup="true" onClick={handleMenuClick}/>
+            <MoreVertical size={20} className="cursor-pointer" aria-controls="simple-menu" aria-haspopup="true" onClick={handleMenuClick} />
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleMenuClose}>
               <MenuItem onClick={handleProfileEdit}>
                 <ListItemIcon>
@@ -99,3 +102,4 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
 
 export { SidebarContext };
 export default Sidebar;
+    
