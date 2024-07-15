@@ -6,7 +6,7 @@ import ChessGame from '../components/ChessGame'; // Adjust the import path as ne
 const GameArenaPage = () => {
   return (
     <div>
-      <ChessGame />
+      <ChessGame gameId={''} player={''} />
     </div>
   );
 };

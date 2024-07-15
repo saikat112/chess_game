@@ -4,7 +4,6 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { SketchPicker } from 'react-color';
 import { Piece } from '../../types/chess';
 
 const initialBoard: (Piece | null)[][] = [
@@ -12,7 +11,7 @@ const initialBoard: (Piece | null)[][] = [
     { type: 'r', color: 'black' },
     { type: 'n', color: 'black' },
     { type: 'b', color: 'black' },
-    { type: 'q', color: 'black' },
+    { type: 'q', color: 'black' },  
     { type: 'k', color: 'black' },
     { type: 'b', color: 'black' },
     { type: 'n', color: 'black' },
@@ -51,15 +50,10 @@ const pieceImages: { [key: string]: string } = {
   P: '♙', // White Pawn
 };
 
-const ChessGame = () => {
+const ChessGame = ({ gameId, player }: { gameId: string; player: string }) => {
   const [board, setBoard] = useState<(Piece | null)[][]>(initialBoard);
   const [selectedPiece, setSelectedPiece] = useState<[number, number] | null>(null);
   const [turn, setTurn] = useState('w');
-  const [lightSquareColor, setLightSquareColor] = useState('#f0d9b5'); // Default light square color
-  const [darkSquareColor, setDarkSquareColor] = useState('#b58863'); // Default dark square color
-  const [gameId, setGameId] = useState<string | null>(null);
-  const [player, setPlayer] = useState<string>('');
-  const [isJoined, setIsJoined] = useState<boolean>(false);
   const [status, setStatus] = useState<string>('');
 
   useEffect(() => {
@@ -98,7 +92,7 @@ const ChessGame = () => {
 
   const applyMoves = (board: (Piece | null)[][], moves: any) => {
     moves.forEach((move: any) => {
-      const { from, to, piece } = move;
+      const { from, to } = move;
       const startX = 8 - parseInt(from[1]);
       const startY = from.charCodeAt(0) - 'a'.charCodeAt(0);
       const endX = 8 - parseInt(to[1]);
@@ -139,86 +133,28 @@ const ChessGame = () => {
     }
   };
 
-  const createGame = async () => {
-    try {
-      const response = await axios.post('http://localhost:5000/api/games');
-      setGameId(response.data._id);
-    } catch (error) {
-      console.error('Error creating game:', error);
-    }
-  };
-
-  const joinGame = async () => {
-    try {
-      const response = await axios.post(`http://localhost:5000/api/games/${gameId}/join`, { player });
-      setIsJoined(true);
-      setStatus(`Player ${player} joined the game`);
-    } catch (error) {
-      console.error('Error joining game:', error);
-      setStatus('Error joining game');
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-4xl mb-4">Chess Game</h1>
-      {!gameId ? (
-        <button onClick={createGame} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
-          Create Game
-        </button>
-      ) : !isJoined ? (
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Enter player name"
-            value={player}
-            onChange={(e) => setPlayer(e.target.value)}
-            className="mr-2 px-2 py-1 border rounded"
-          />
-          <button onClick={joinGame} className="px-4 py-2 bg-green-500 text-white rounded">
-            Join Game
-          </button>
+    <div className="flex flex-col items-center">
+      <div className="bg-neutral-800 shadow-lg rounded-lg p-4 flex">
+        <div className="grid grid-cols-8 gap-1">
+          {board.map((row, x) =>
+            row.map((piece, y) => (
+              <div
+                key={`${x}-${y}`}
+                onClick={() => handleSquareClick(x, y)}
+                className={`w-16 h-16 flex items-center justify-center cursor-pointer`}
+                style={{
+                  backgroundColor: (x + y) % 2 === 0 ? '#f0d9b5' : '#b58863',
+                  border: selectedPiece && selectedPiece[0] === x && selectedPiece[1] === y ? '4px solid yellow' : 'none',
+                }}
+              >
+                {piece && <span className="text-3xl">{pieceImages[piece.type]}</span>}
+              </div>
+            ))
+          )}
         </div>
-      ) : (
-        <div className="flex flex-col items-center">
-          <div className="mb-4 flex">
-            <div className="mr-4">
-              <h2 className="text-xl mb-2">Light Square Color</h2>
-              <SketchPicker
-                color={lightSquareColor}
-                onChangeComplete={(color) => setLightSquareColor(color.hex)}
-              />
-            </div>
-            <div>
-              <h2 className="text-xl mb-2">Dark Square Color</h2>
-              <SketchPicker
-                color={darkSquareColor}
-                onChangeComplete={(color) => setDarkSquareColor(color.hex)}
-              />
-            </div>
-          </div>
-          <div className="bg-neutral-800 shadow-lg rounded-lg p-4 flex">
-            <div className="grid grid-cols-8 gap-1">
-              {board.map((row, x) =>
-                row.map((piece, y) => (
-                  <div
-                    key={`${x}-${y}`}
-                    onClick={() => handleSquareClick(x, y)}
-                    className={`w-16 h-16 flex items-center justify-center cursor-pointer`}
-                    style={{
-                      backgroundColor: (x + y) % 2 === 0 ? lightSquareColor : darkSquareColor,
-                      border: selectedPiece && selectedPiece[0] === x && selectedPiece[1] === y ? '4px solid yellow' : 'none',
-                    }}
-                  >
-                    {piece && <span className="text-3xl">{pieceImages[piece.type]}</span>}
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-          {status && <div className="status mt-4 text-red-500">{status}</div>}
-        </div>
-      )}
+      </div>
+      {status && <div className="status mt-4 text-red-500">{status}</div>}
     </div>
   );
 };
