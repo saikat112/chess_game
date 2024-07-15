@@ -7,20 +7,19 @@ import MobileNavBar from './MobileNavBar';
 import SideNavBar from './Sidebar';
 import Image from 'next/image';
 
-
 const LandingPage = () => {
   const router = useRouter();
 
   const handlePlayOnlineClick = () => {
-    router.push('/play-online'); // Adjust the path based on your routing setup
+    router.push('/play/play-online'); // Adjust the path based on your routing setup
   };
 
   const handlePlayWithFriendClick = () => {
-    router.push('/play-with-friend'); // Adjust the path based on your routing setup
+    router.push('/play/play-with-friend'); // Adjust the path based on your routing setup
   };
 
   const handlePlayWithComputerClick = () => {
-    router.push('/play-with-computer'); // Adjust the path based on your routing setup
+    router.push('/play/play-with-computer'); // Adjust the path based on your routing setup
   };
 
   return (
@@ -29,7 +28,7 @@ const LandingPage = () => {
         {/* <NavBar /> */}
         {/* <Sidebar/> */}
         <div className="flex-1 flex items-center justify-center">
-          <Image src="/chess-picture.jpg" alt="Chess" className="w-1/2 rounded-lg shadow-lg" />
+          <Image src='' alt="Chess" className="w-1/2 rounded-lg shadow-lg" />
         </div>
         <div className="flex flex-col items-center justify-center space-y-4 p-4">
           <button
