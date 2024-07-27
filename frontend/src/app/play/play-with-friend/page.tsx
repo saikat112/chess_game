@@ -1,32 +1,40 @@
-// src/app/play/play-with-friend/page.tsx
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
-import ChessGame from '../../components/ChessGame'; // Adjust the path if necessary
+import ChessGame from '../../components/ChessGame'; // Adjust the import path as needed
 
-const PlayWithFriendPage = () => {
+const PlayWithFriendPage: React.FC = () => {
   const [gameId, setGameId] = useState<string | null>(null);
   const [player, setPlayer] = useState<string>('');
   const [isJoined, setIsJoined] = useState<boolean>(false);
   const [inviteLink, setInviteLink] = useState<string>('');
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameIdParam = urlParams.get('gameId');
+    const gameIdParam = searchParams.get('gameId');
     if (gameIdParam) {
       setGameId(gameIdParam);
     }
-  }, []);
+  }, [searchParams]);
 
   const createGame = async () => {
     try {
       const response = await axios.post('http://localhost:5000/api/games');
       setGameId(response.data._id);
-      setInviteLink(`${window.location.origin}/play/play-with-friend?gameId=${response.data._id}`);
     } catch (error) {
       console.error('Error creating game:', error);
+    }
+  };
+
+  const generateInviteLink = async () => {
+    if (!gameId) return;
+    try {
+      const response = await axios.post(`http://localhost:5000/api/games/${gameId}/invite`);
+      setInviteLink(response.data.inviteLink);
+    } catch (error) {
+      console.error('Error generating invite link:', error);
     }
   };
 
@@ -41,7 +49,7 @@ const PlayWithFriendPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-4xl mb-4">Play Chess with a Friend</h1>
+      <h1 className="text-4xl mb-4">Play with Friend</h1>
       {!gameId ? (
         <button onClick={createGame} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
           Create Game
@@ -58,7 +66,7 @@ const PlayWithFriendPage = () => {
           <button onClick={joinGame} className="px-4 py-2 bg-green-500 text-white rounded">
             Join Game
           </button>
-          <button onClick={() => setInviteLink(`${window.location.origin}/play-with-friend?gameId=${gameId}`)} className="px-4 py-2 bg-yellow-500 text-white rounded ml-2">
+          <button onClick={generateInviteLink} className="px-4 py-2 bg-yellow-500 text-white rounded ml-2">
             Generate Invite Link
           </button>
           {inviteLink && (

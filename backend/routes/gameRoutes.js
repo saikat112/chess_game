@@ -61,6 +61,18 @@ router.post('/:id/move', async (req, res) => {
   }
 });
 
+// Generate invite link
+router.post('/:id/invite', async (req, res) => {
+  try {
+    const gameId = req.params.id;
+    const inviteLink = `http://localhost:3000/play/play-with-friend?gameId=${gameId}`;
+    res.status(200).json({ inviteLink });
+  } catch (error) {
+    console.error('Error generating invite link:', error);
+    res.status(500).json({ error: 'Failed to generate invite link' });
+  }
+});
+
 // Delete all games
 router.delete('/delete-all', async (req, res) => {
   try {
@@ -71,18 +83,6 @@ router.delete('/delete-all', async (req, res) => {
   } catch (error) {
     console.error('Error deleting games:', error);
     res.status(500).json({ error: 'Failed to delete games' });
-  }
-});
-
-// Generate invite link
-router.post('/:id/invite', async (req, res) => {
-  try {
-    const gameId = req.params.id;
-    const inviteLink = `http://localhost:3000/play-with-friend?gameId=${gameId}`;
-    res.status(200).json({ inviteLink });
-  } catch (error) {
-    console.error('Error generating invite link:', error);
-    res.status(500).json({ error: 'Failed to generate invite link' });
   }
 });
 

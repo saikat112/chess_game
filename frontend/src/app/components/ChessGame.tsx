@@ -1,17 +1,20 @@
-// src/app/components/ChessGame.tsx
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Piece } from '../../types/chess';
 
+interface ChessGameProps {
+  gameId: string;
+  player: string;
+}
+
 const initialBoard: (Piece | null)[][] = [
   [
     { type: 'r', color: 'black' },
     { type: 'n', color: 'black' },
     { type: 'b', color: 'black' },
-    { type: 'q', color: 'black' },  
+    { type: 'q', color: 'black' },
     { type: 'k', color: 'black' },
     { type: 'b', color: 'black' },
     { type: 'n', color: 'black' },
@@ -50,16 +53,14 @@ const pieceImages: { [key: string]: string } = {
   P: '♙', // White Pawn
 };
 
-const ChessGame = ({ gameId, player }: { gameId: string; player: string }) => {
+const ChessGame: React.FC<ChessGameProps> = ({ gameId, player }) => {
   const [board, setBoard] = useState<(Piece | null)[][]>(initialBoard);
   const [selectedPiece, setSelectedPiece] = useState<[number, number] | null>(null);
   const [turn, setTurn] = useState('w');
   const [status, setStatus] = useState<string>('');
 
   useEffect(() => {
-    if (gameId) {
-      fetchBoardState();
-    }
+    fetchBoardState();
   }, [gameId]);
 
   const fetchBoardState = async () => {
@@ -92,7 +93,7 @@ const ChessGame = ({ gameId, player }: { gameId: string; player: string }) => {
 
   const applyMoves = (board: (Piece | null)[][], moves: any) => {
     moves.forEach((move: any) => {
-      const { from, to } = move;
+      const { from, to, piece } = move;
       const startX = 8 - parseInt(from[1]);
       const startY = from.charCodeAt(0) - 'a'.charCodeAt(0);
       const endX = 8 - parseInt(to[1]);
@@ -134,7 +135,8 @@ const ChessGame = ({ gameId, player }: { gameId: string; player: string }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <h1 className="text-4xl mb-4">Chess Game</h1>
       <div className="bg-neutral-800 shadow-lg rounded-lg p-4 flex">
         <div className="grid grid-cols-8 gap-1">
           {board.map((row, x) =>
